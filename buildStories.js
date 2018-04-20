@@ -1,0 +1,1 @@
+console.log('Stories has been builded successful');

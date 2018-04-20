@@ -41,10 +41,14 @@
     "loader.js": "^4.0.1"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "story",
+    "combook"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.6"
+    "ember-cli-babel": "^5.1.6",
+    "fb-watchman": "^2.0.0",
+    "node-watch": "^0.5.8"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
