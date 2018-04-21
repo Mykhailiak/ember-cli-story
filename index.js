@@ -7,38 +7,30 @@ const { exec } = require('child_process');
 
 module.exports = {
   name: 'ember-cli-story',
-  app: {
-    project: {
-      root: __dirname,
-    }
-  },
   states: {
     CHANGE: 'change',
     ERROR: 'error',
   },
-  paths: function() {
-    console.log(this.app.project.root);
+  initializeSystemPaths(appInstance) {
+    const { root } = appInstance.project;
 
-    return {
-      components: path.join(this.app.project.root, '/app/pods/components/'),
+    this.paths = {
+      components: path.join(root, '/app/pods/components/'),
     };
   },
   async changeHandler() {
-    console.info('========================================= stories =================');
-    console.info('Updating stories...');
+    this.ui.writeLine('Updating stories...');
 
     try {
       await exec('node buildStories.js')
 
-      console.info('Stories has been updated successfully!');
+      this.ui.writeLine('Stories has been updated successfully!');
     } catch (e) {
       console.error('Error: ', e);
     }
-
-    console.info('========================================= stories =================');
   },
   errorHandler(e) {
-    console.log('Error: ', e);
+    this.ui.writeLine('Error: ', e);
   },
   setupSubscribers() {
     const { CHANGE, ERROR } = this.states;
@@ -47,21 +39,19 @@ module.exports = {
     this.watcher.on(ERROR, (e) => this.errorHandler(e));
   },
   setup() {
-    this.watcher = watch(this.paths().components, {
+    this.watcher = watch(this.paths.components, {
       recursive: true,
-      filter: /story\.js$/gi,
-      delay: 5000,
+      filter: /story\.js$/,
     });
-
-    console.log('setup');
 
     this.setupSubscribers();
   },
   included() {
-    // this._super.included(...arguments);
+    this._super.included(...arguments);
 
     this.setup();
   },
+  setupPreprocessorRegistry(type, registry) {
+    this.initializeSystemPaths(registry.app);
+  },
 };
-
-module.exports.included();
