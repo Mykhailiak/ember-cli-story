@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-story",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
@@ -55,7 +55,6 @@
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.6",
-    "fb-watchman": "^2.0.0",
     "node-watch": "^0.5.8"
   },
   "ember-addon": {
