@@ -9,8 +9,12 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember try:each"
+    "test": "ember try:each",
+    "eslint:check": "./node_modules/eslint/bin/eslint.js ./index.js"
   },
+  "pre-commit": [
+    "eslint:check"
+  ],
   "repository": "https://github.com/Myhaylyak/ember-cli-story",
   "engines": {
     "node": ">= 0.10.0"
@@ -38,7 +42,11 @@
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
     "ember-welcome-page": "^1.0.1",
-    "loader.js": "^4.0.1"
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "loader.js": "^4.0.1",
+    "pre-commit": "^1.2.2"
   },
   "keywords": [
     "ember-addon",
