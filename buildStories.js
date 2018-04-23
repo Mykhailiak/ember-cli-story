@@ -4,6 +4,8 @@ const path = require('path');
 const ROOT = process.env.PROJECT_ROOT || __dirname;
 const thisPath = p => path.join(ROOT, p);
 
+console.log('ROOT', ROOT);
+
 const findStoriesFiles = function findStoriesFiles(dirPath, collection = []) {
   const list = fs.readdirSync(dirPath);
   list.forEach((way) => {
