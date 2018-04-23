@@ -1,6 +1,6 @@
 const watch = require('node-watch');
 const path = require('path');
-const { execSync } = require('child_process');
+const { exec } = require('child_process');
 
 module.exports = {
   name: 'ember-cli-story',
@@ -20,9 +20,9 @@ module.exports = {
     this.ui.writeLine('Updating stories...');
 
     try {
-      console.log(execSync(`node ${path.join(__dirname, 'buildStories.js')}`, {
+      exec(`node ${path.join(__dirname, 'buildStories.js')}`, {
         env: { PROJECT_ROOT: this.paths.root },
-      }).toString());
+      });
 
       this.ui.writeLine('Stories has been updated successfully!');
     } catch (e) {
