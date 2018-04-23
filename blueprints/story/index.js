@@ -20,8 +20,6 @@ module.exports = {
     const { entity: { name } } = options;
     const pilotPath = path.join(__dirname, `../../app/pods/components/${name}`);
 
-    console.log('PATH', pilotPath);
-
     if (!isExist(pilotPath)) {
       throw new Error('Component doesn\'t exist yet.');
     }
