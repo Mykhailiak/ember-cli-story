@@ -12,6 +12,7 @@ module.exports = {
     const { root } = appInstance.project;
 
     this.paths = {
+      root,
       components: path.join(root, '/app/pods/components/'),
     };
   },
@@ -19,7 +20,9 @@ module.exports = {
     this.ui.writeLine('Updating stories...');
 
     try {
-      await exec('node buildStories.js');
+      exec(`node ${path.join(__dirname, 'buildStories.js')}`, {
+        env: { PROJECT_ROOT: this.paths.root },
+      });
 
       this.ui.writeLine('Stories has been updated successfully!');
     } catch (e) {
