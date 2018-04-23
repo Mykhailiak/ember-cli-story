@@ -20,7 +20,7 @@ module.exports = {
     this.ui.writeLine('Updating stories...');
 
     try {
-      console.log(execSync('node buildStories.js', {
+      console.log(execSync(`node ${path.join(__dirname, 'buildStories.js')}`, {
         env: { PROJECT_ROOT: this.paths.root },
       }).toString());
 
